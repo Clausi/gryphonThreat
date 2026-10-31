@@ -1,0 +1,36 @@
+## Interface: 120105
+## Title: GryphonThreat
+## Notes: Shows the threat on your target in the style of the built-in damage meter.
+## Notes-deDE: Zeigt die Bedrohung auf deinem Ziel im Stil der eingebauten Schadensanzeige.
+## Notes-frFR: Affiche la menace sur votre cible dans le style de l'outil de dégâts intégré.
+## Category: Combat
+## Author: cklausl
+## Version: 0.1.0
+## SavedVariables: GryphonThreatDB
+## SavedVariablesPerCharacter: GryphonThreatCharDB
+## IconTexture: Interface\Icons\Ability_Warrior_Taunt
+## X-Category: Combat
+## X-License: MIT
+## X-Website: https://github.com/Clausi/gryphonThreat
+
+# Libraries (fetched by the packager, see .pkgmeta)
+Libs\LibStub\LibStub.lua
+Libs\LibEditMode\embed.xml
+
+# Localization (enUS must be loaded first, it is the fallback)
+Locales\enUS.lua
+Locales\deDE.lua
+Locales\frFR.lua
+
+# Core
+Core\Init.lua
+Core\Compat.lua
+Core\Util.lua
+
+# Modules
+Modules\ThreatData.lua
+Modules\ThreatWindow.lua
+Modules\ThreatWindowSettings.lua
+
+# Bootstrap (must be loaded last)
+Core\Main.lua

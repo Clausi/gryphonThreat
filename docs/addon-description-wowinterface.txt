@@ -1,0 +1,68 @@
+[size="5"][b]GryphonThreat[/b][/size]
+
+[b]A threat meter for World of Warcraft Retail that looks like the built-in damage meter.[/b]
+
+GryphonThreat shows who has aggro on your target and how close everyone else is to pulling it, in a window that fits right next to Blizzard's damage meter: same header, same bars, same Edit Mode settings.
+
+[size="4"][b]Features[/b][/size]
+
+[size="3"][b]Threat window[/b][/size]
+[list]
+[*]One bar for each member of your group and their [b]pets[/b], highest threat first
+[*][b]Class colors[/b] and [b]class icons[/b], [i]1. Name[/i] and [i]threat (percent)[/i], just like the damage meter
+[*]The bar shows how close a unit is to pulling aggro ([b]100 % = has aggro[/b])
+[*]The title shows the name of your target
+[*]Your [b]own bar[/b] stays visible in large groups: if you are below the visible bars, the last one shows you
+[/list]
+
+[size="3"][b]Pull aggro bar[/b][/size]
+While someone else has aggro, the first bar shows how much threat you can still do before you pull it:
+[list]
+[*][b]110 %[/b] of the tank's threat in melee range, [b]130 %[/b] at range
+[*]Fills up and turns from [b]green[/b] over [b]yellow[/b] to [b]red[/b] as you get closer
+[*]Can be turned off in Edit Mode
+[/list]
+
+[size="3"][b]Edit Mode[/b][/size]
+The window is part of Blizzard's [b]Edit Mode[/b] (Esc > Edit Mode) and has the settings of the damage meter:
+[list]
+[*][b]Style:[/b] default, bordered or thin
+[*][b]Numbers:[/b] minimal, compact or complete
+[*][b]Frame width and height[/b], [b]bar height[/b], [b]padding[/b]
+[*][b]Opacity[/b], [b]background[/b] and [b]text size[/b]
+[*][b]Visibility:[/b] always, in combat, in group or hidden
+[*][b]Class icons[/b], [b]class colors[/b] and the [b]pull aggro bar[/b] on or off
+[/list]
+Settings and position are saved [b]per Edit Mode layout[/b]. While you preview the style, opacity or background, the selection overlay hides, just like for the damage meter.
+
+[size="3"][b]Window[/b][/size]
+[list]
+[*]Move it, resize it with the handle in the bottom right corner, minimize it in the header
+[*]Lock or hide it in the menu of the gear button
+[*][b]Test mode[/b] with sample bars to place the window without a fight; Edit Mode shows them too
+[/list]
+
+[size="4"][b]Slash commands[/b][/size]
+[list]
+[*][b]/gryphonthreat[/b] or [b]/gthreat[/b] - Show all commands
+[*][b]/gryphonthreat show[/b] / [b]hide[/b] - Show or hide the window
+[*][b]/gryphonthreat lock[/b] - Lock or unlock the window
+[*][b]/gryphonthreat reset[/b] - Reset position and size (current Edit Mode layout)
+[*][b]/gryphonthreat test[/b] - Show sample bars
+[*][b]/gryphonthreat notify on|off[/b] - Turn the login message of this character on or off
+[/list]
+
+[size="4"][b]Good to know[/b][/size]
+[list]
+[*]Supports [b]Retail[/b]. [b]WoW Forever[/b] is planned.
+[*]Only the threat on your [b]own target[/b] is shown, not on the target of a friendly target.
+[*]In restricted content, Blizzard makes threat values [b]secret[/b]. The window then shows the percentage only and keeps the group order.
+[*]The window can not be changed in Edit Mode [b]during combat[/b].
+[*]Languages: English, German, French.
+[/list]
+
+[size="4"][b]Feedback & source code[/b][/size]
+Found a bug or have an idea? Please open an issue on GitHub:
+[b][url="https://github.com/Clausi/gryphonThreat/issues"]github.com/Clausi/gryphonThreat/issues[/url][/b]
+
+Source code and changelog: [url="https://github.com/Clausi/gryphonThreat"]github.com/Clausi/gryphonThreat[/url]

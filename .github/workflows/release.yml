@@ -1,0 +1,31 @@
+name: Release
+
+# Pushing a version tag (e.g. v0.7.0) builds the package with the BigWigs packager and uploads it
+# to CurseForge (project ID from X-Curse-Project-ID in the TOC), Wago Addons (X-Wago-ID),
+# WoWInterface (X-WoWI-ID) and as a GitHub release.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The packager needs the history and tags for the version and the changelog.
+          fetch-depth: 0
+
+      - uses: nebularg/actions-luacheck@v1
+        with:
+          args: --no-color -q
+
+      - uses: BigWigsMods/packager@v2
