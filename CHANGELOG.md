@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-31
+
 ### Added
 
 - Threat window in the look of the built-in damage meter: the threat of your group and pets on your
@@ -28,3 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Slash commands `/gryphonthreat` (`/gthreat`): `show`, `hide`, `lock`, `reset`, `test`, `version`,
   `notify`, `debug`.
 - English, German and French texts.
+
+[Unreleased]: https://github.com/Clausi/gryphonThreat/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Clausi/gryphonThreat/releases/tag/v0.1.0
