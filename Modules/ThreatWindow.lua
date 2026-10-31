@@ -54,8 +54,8 @@ local AGGRO_COLORS = {
     { 0.8, 0.15, 0.15 },
 }
 local AGGRO_RED_PERCENT = 90
--- The pull aggro bar has the icon of the addon (Taunt).
-local PULL_AGGRO_ICON = "Interface\\Icons\\Ability_Warrior_Taunt"
+-- The pull aggro bar shows the icon of the spell Taunt, the same as the addon's icon in the TOC.
+local PULL_AGGRO_ICON = "Interface\\Icons\\Spell_Nature_Reincarnation"
 -- Crops the border of a spell icon, like the TexCoords of DamageMeterEntryTemplate.
 local ICON_TEX_COORD = { 0.0625, 0.9, 0.0625, 0.9 }
 local ICON_SIZE = 24
