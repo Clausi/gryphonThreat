@@ -246,5 +246,9 @@ function ThreatWindowSettings:OnEnable()
     end)
     -- AddFrame creates LibEditMode's dialog.
     HookSettingsDialog()
+    -- The width and height sliders show the size set with the Edit Mode resize handle.
+    frame.EditModeResizeButton:HookScript("OnMouseUp", function()
+        LibEditMode:RefreshFrameSettings(frame)
+    end)
     RegisterLayoutCallbacks()
 end

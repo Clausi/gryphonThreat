@@ -455,13 +455,14 @@ function ThreatWindow:SetEditing(editing)
     if not window then
         return
     end
+    window.EditModeResizeButton:SetShown(editing)
     UpdateMinimized()
     UpdateVisibility()
     self:Refresh()
 end
 
 -- The window can be moved and resized outside Edit Mode while it is not locked. In Edit Mode,
--- LibEditMode moves it and the size comes from the settings dialog.
+-- LibEditMode moves it and the Edit Mode resize handle or the settings dialog sizes it.
 local function CanMoveOrResize()
     return not GetCharSettings().locked and not isEditing
 end
@@ -541,6 +542,47 @@ local function CreateSettingsButton()
     return button
 end
 
+-- StartSizing("BOTTOMRIGHT") keeps the TOPLEFT corner in place only if the window is anchored there;
+-- with other anchors (e.g. the default CENTER), the window jumps when the drag starts. So the window
+-- is anchored at its current top left corner first.
+local function StartResizing(button)
+    local left, top = window:GetLeft(), window:GetTop()
+    window:ClearAllPoints()
+    window:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, top)
+    button:SetButtonState("PUSHED", true)
+    button:GetHighlightTexture():Hide()
+    window:StartSizing("BOTTOMRIGHT")
+    window.isResizing = true
+end
+
+-- Saves size (in whole pixels, as the Edit Mode sliders show them) and position in the layout.
+local function StopResizing(button)
+    button:SetButtonState("NORMAL", false)
+    button:GetHighlightTexture():Show()
+    window:StopMovingOrSizing()
+    window.isResizing = false
+    local layout = ThreatWindow:GetLayout()
+    local width, height = window:GetSize()
+    layout.width, layout.height = floor(width + 0.5), floor(height + 0.5)
+    window:SetSize(layout.width, layout.height)
+    local point, _, relativePoint, x, y = window:GetPoint(1)
+    ThreatWindow:SavePosition(nil, point, relativePoint, x, y)
+end
+
+-- Mouse handling of a resize handle; canResize tells whether it may be used right now.
+local function SetupResizeButton(button, canResize)
+    button:SetScript("OnMouseDown", function(_, mouseButton)
+        if mouseButton == "LeftButton" and canResize() then
+            StartResizing(button)
+        end
+    end)
+    button:SetScript("OnMouseUp", function(_, mouseButton)
+        if mouseButton == "LeftButton" and window.isResizing then
+            StopResizing(button)
+        end
+    end)
+end
+
 local function CreateResizeButton()
     local button = CreateFrame("Button", nil, window.Container)
     button:SetSize(60, 60)
@@ -558,32 +600,26 @@ local function CreateResizeButton()
     alpha:SetToAlpha(1)
     button.FadeIn = fadeIn
 
-    button:SetScript("OnMouseDown", function(_, mouseButton)
-        if mouseButton ~= "LeftButton" or not CanMoveOrResize() then
-            return
-        end
-        button:SetButtonState("PUSHED", true)
-        button:GetHighlightTexture():Hide()
-        window:StartSizing("BOTTOMRIGHT")
-        window.isResizing = true
+    SetupResizeButton(button, CanMoveOrResize)
+    button:HookScript("OnEnter", OnWindowEnter)
+    return button
+end
+
+-- Resize handle in Edit Mode, like the EditModeResizeButton of EditModeDamageMeterSystemTemplate:
+-- above the Edit Mode selection (HIGH strata), shown only in Edit Mode.
+local function CreateEditModeResizeButton()
+    local button = CreateFrame("Button", nil, window)
+    button:SetFrameStrata("HIGH")
+    button:SetToplevel(true)
+    button:SetSize(60, 60)
+    button:SetPoint("BOTTOMRIGHT", 10, -10)
+    button:SetNormalAtlas(style.resizeAtlas)
+    button:SetHighlightAtlas(style.resizeHoverAtlas)
+    button:SetPushedAtlas(style.resizePressedAtlas)
+    button:Hide()
+    SetupResizeButton(button, function()
+        return isEditing
     end)
-    button:SetScript("OnMouseUp", function(_, mouseButton)
-        if mouseButton ~= "LeftButton" or not window.isResizing then
-            return
-        end
-        button:SetButtonState("NORMAL", false)
-        button:GetHighlightTexture():Show()
-        window:StopMovingOrSizing()
-        window.isResizing = false
-        -- Whole pixels, as the Edit Mode sliders show them.
-        local layout = ThreatWindow:GetLayout()
-        local width, height = window:GetSize()
-        layout.width, layout.height = floor(width + 0.5), floor(height + 0.5)
-        window:SetSize(layout.width, layout.height)
-        local point, _, relativePoint, x, y = window:GetPoint(1)
-        ThreatWindow:SavePosition(nil, point, relativePoint, x, y)
-    end)
-    button:SetScript("OnEnter", OnWindowEnter)
     return button
 end
 
@@ -653,6 +689,7 @@ local function CreateWindow()
     window.EmptyText:SetPoint("BOTTOMRIGHT", -20, 0)
 
     window.ResizeButton = CreateResizeButton()
+    window.EditModeResizeButton = CreateEditModeResizeButton()
 
     UpdateMinimized()
 end

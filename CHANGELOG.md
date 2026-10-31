@@ -20,7 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The window is part of Edit Mode, with the settings of the damage meter: style, numbers, frame
   size, bar height, padding, opacity, background, text size, visibility, class icons, class colors
   and the pull aggro bar. Saved per Edit Mode layout. As in the damage meter, the selection overlay
-  hides while you preview the style, opacity or background.
+  hides while you preview the style, opacity or background. Like the damage meter, the window has a
+  resize handle in Edit Mode.
 - Moving, resizing, minimizing, locking and hiding the window; shown, locked and minimized are stored
   per character.
 - Test mode with sample bars (`/gryphonthreat test` or the settings menu).
