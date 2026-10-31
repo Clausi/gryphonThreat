@@ -46,14 +46,15 @@ ThreatWindow.DEFAULT_POSITION = { point = "CENTER", x = 400, y = -150 }
 local REFRESH_DELAY = 0.1
 -- Space between the header and the first bar, and below the last bar (DamageMeterSessionWindowMixin).
 local LIST_TOP_OFFSET, LIST_BOTTOM_OFFSET = 2, 6
--- Pull aggro bar: its color goes from green over yellow to red as the player gets closer to the
--- pull threshold, red from PULL_AGGRO_RED_PERCENT on. The icon is the one of the addon (Taunt).
-local PULL_AGGRO_COLORS = {
+-- Aggro colors: from green over yellow to red as a unit gets closer to pulling aggro, red from
+-- AGGRO_RED_PERCENT on. Used by the pull aggro bar, and by all bars without class colors.
+local AGGRO_COLORS = {
     { 0.2, 0.8, 0.2 },
     { 1, 0.8, 0 },
     { 0.8, 0.15, 0.15 },
 }
-local PULL_AGGRO_RED_PERCENT = 90
+local AGGRO_RED_PERCENT = 90
+-- The pull aggro bar has the icon of the addon (Taunt).
 local PULL_AGGRO_ICON = "Interface\\Icons\\Ability_Warrior_Taunt"
 -- Crops the border of a spell icon, like the TexCoords of DamageMeterEntryTemplate.
 local ICON_TEX_COORD = { 0.0625, 0.9, 0.0625, 0.9 }
@@ -93,15 +94,34 @@ function ThreatWindow:GetLayout(layoutName)
     return layouts[layoutName]
 end
 
-local function GetBarColor(entry, layout)
-    if entry.isPet then
-        return style.creatureColor
+-- Aggro color (r, g, b) for a percentage of the pull threshold (0-100).
+local function GetAggroColor(percent)
+    local progress = math.min(1, math.max(0, percent / AGGRO_RED_PERCENT))
+    -- Two halves: green to yellow, then yellow to red.
+    local from, to, t
+    if progress < 0.5 then
+        from, to, t = AGGRO_COLORS[1], AGGRO_COLORS[2], progress * 2
+    else
+        from, to, t = AGGRO_COLORS[2], AGGRO_COLORS[3], (progress - 0.5) * 2
     end
+    return from[1] + (to[1] - from[1]) * t, from[2] + (to[2] - from[2]) * t, from[3] + (to[3] - from[3]) * t
+end
+
+-- Bar color (r, g, b): the class color, or with "Show Class Color" off the aggro color of the
+-- unit's percentage, as the damage meter shows no class without its class color. Secret
+-- percentages can not be compared, so those bars keep the default color.
+local function GetBarColor(entry, layout)
     if not layout.classColors then
-        return style.defaultColor
+        if entry.isSecret then
+            return style.defaultColor:GetRGB()
+        end
+        return GetAggroColor(entry.percent)
+    end
+    if entry.isPet then
+        return style.creatureColor:GetRGB()
     end
     local classColor = entry.classFilename and RAID_CLASS_COLORS[entry.classFilename]
-    return classColor or style.defaultColor
+    return (classColor or style.defaultColor):GetRGB()
 end
 
 -- One bar of the list, see DamageMeterEntryTemplate. Anchors depend on the style and are set by
@@ -220,8 +240,7 @@ local function SetBarEntry(bar, entry, index, layout)
     bar.StatusBar:SetValue(entry.percent)
     SetValueText(bar.Value, entry, layout.numbers)
 
-    local color = GetBarColor(entry, layout)
-    bar.StatusBar:SetStatusBarColor(color:GetRGB())
+    bar.StatusBar:SetStatusBarColor(GetBarColor(entry, layout))
 
     -- SetAtlas also resets the texture coordinates of the pull aggro icon.
     local iconAtlas = not entry.isPet and Compat.GetClassIconAtlas(entry.classFilename)
@@ -259,26 +278,13 @@ local function GetVisibleBarCount(layout)
     return math.max(0, floor((listHeight + layout.padding) / rowHeight))
 end
 
--- Color of the pull aggro bar for the player's percentage of the pull threshold (0-100).
-local function GetPullAggroColor(percent)
-    local progress = math.min(1, math.max(0, percent / PULL_AGGRO_RED_PERCENT))
-    -- Two halves: green to yellow, then yellow to red.
-    local from, to, t
-    if progress < 0.5 then
-        from, to, t = PULL_AGGRO_COLORS[1], PULL_AGGRO_COLORS[2], progress * 2
-    else
-        from, to, t = PULL_AGGRO_COLORS[2], PULL_AGGRO_COLORS[3], (progress - 0.5) * 2
-    end
-    return from[1] + (to[1] - from[1]) * t, from[2] + (to[2] - from[2]) * t, from[3] + (to[3] - from[3]) * t
-end
-
 -- First bar while someone else has aggro: "Pull Aggro" and the threat still missing. It fills up
 -- and turns from green to red with the player's percentage of the pull threshold.
 local function SetPullAggroBar(bar, needed, percent, layout)
     bar.Name:SetText(L["PULL_AGGRO"])
     bar.StatusBar:SetValue(percent)
     bar.Value:SetFormattedText(L["PULL_AGGRO_VALUE"], FormatThreat(needed, layout.numbers))
-    bar.StatusBar:SetStatusBarColor(GetPullAggroColor(percent))
+    bar.StatusBar:SetStatusBarColor(GetAggroColor(percent))
     bar.Icon:SetTexture(PULL_AGGRO_ICON)
     bar.Icon:SetTexCoord(unpack(ICON_TEX_COORD))
     bar:Show()

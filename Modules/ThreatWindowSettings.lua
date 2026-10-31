@@ -186,7 +186,7 @@ local function BuildSettings()
             { text = L["SETTING_VISIBILITY_HIDDEN"], value = Visibility.Hidden },
         }),
         Checkbox("showIcons", L["SETTING_SHOW_ICONS"]),
-        Checkbox("classColors", L["SETTING_CLASS_COLORS"]),
+        Checkbox("classColors", L["SETTING_CLASS_COLORS"], L["SETTING_CLASS_COLORS_DESC"]),
         Checkbox("showPullAggro", L["SETTING_PULL_AGGRO"], L["SETTING_PULL_AGGRO_DESC"]),
     }
 end
