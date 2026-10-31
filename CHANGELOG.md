@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- The pull aggro bar and the addon list show the Taunt icon; it was missing before.
+
 ## [0.1.0] - 2026-10-31
 
 ### Added

@@ -8,7 +8,7 @@
 ## Version: 0.1.0
 ## SavedVariables: GryphonThreatDB
 ## SavedVariablesPerCharacter: GryphonThreatCharDB
-## IconTexture: Interface\Icons\Ability_Warrior_Taunt
+## IconTexture: Interface\Icons\Spell_Nature_Reincarnation
 ## X-Category: Combat
 ## X-License: MIT
 ## X-Website: https://github.com/Clausi/gryphonThreat
