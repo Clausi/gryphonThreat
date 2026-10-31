@@ -12,6 +12,7 @@
 ## X-Category: Combat
 ## X-License: MIT
 ## X-Website: https://github.com/Clausi/gryphonThreat
+## X-Wago-ID: mNww2XNo
 
 # Libraries (fetched by the packager, see .pkgmeta)
 Libs\LibStub\LibStub.lua

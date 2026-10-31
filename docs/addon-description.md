@@ -60,3 +60,5 @@ Found a bug or have an idea? Please open an issue on GitHub:
 **[github.com/Clausi/gryphonThreat/issues](https://github.com/Clausi/gryphonThreat/issues)**
 
 Source code and changelog: [github.com/Clausi/gryphonThreat](https://github.com/Clausi/gryphonThreat)
+
+Also available on [Wago Addons](https://addons.wago.io/addons/gryphonthreat).
