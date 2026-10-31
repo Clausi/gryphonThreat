@@ -11,6 +11,7 @@ GryphonThreat shows who has aggro on your target and how close everyone else is 
 [*]One bar for each member of your group and their [b]pets[/b], highest threat first
 [*][b]Class colors[/b] and [b]class icons[/b], [i]1. Name[/i] and [i]threat (percent)[/i], just like the damage meter
 [*]The bar shows how close a unit is to pulling aggro ([b]100 % = has aggro[/b])
+[*]Prefer colors that warn you? Turn off the class colors and the bars turn from [b]green[/b] to [b]red[/b] as a unit gets closer to aggro
 [*]The title shows the name of your target
 [*]Your [b]own bar[/b] stays visible in large groups: if you are below the visible bars, the last one shows you
 [/list]

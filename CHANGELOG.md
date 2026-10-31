@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Threat window in the look of the built-in damage meter: the threat of your group and pets on your
   target, highest first, with class colors and icons. The title shows the name of the target.
 - Your own bar stays visible when the list is longer than the window.
+- With class colors turned off, the bars turn from green over yellow to red as a unit gets closer to
+  pulling aggro.
 - Optional "Pull Aggro" bar: while someone else has aggro, the first bar shows how much threat you
   still need to pull it (110 % in melee range, 130 % at range). It turns from green to red as you
   get closer.

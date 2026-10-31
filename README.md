@@ -7,7 +7,8 @@ built-in damage meter.
 
 - **Threat window:** one bar per group member (and pet) with the threat on your target, highest
   first, in the look of Blizzard's damage meter: header bar, class colors and icons, "1. Name" and
-  "threat (percent)". The bar shows how close a unit is to pulling aggro (100 % = has aggro).
+  "threat (percent)". The bar shows how close a unit is to pulling aggro (100 % = has aggro). With
+  class colors turned off, the bars turn from green over yellow to red as a unit gets closer to it.
 - **Pull aggro bar (optional):** while someone else has aggro, the first bar shows how much threat
   you still need to pull it (110 % in melee range, 130 % at range). It fills up and turns from
   green over yellow to red as you get closer.
