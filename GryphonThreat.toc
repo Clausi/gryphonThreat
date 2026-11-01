@@ -5,7 +5,7 @@
 ## Notes-frFR: Affiche la menace sur votre cible dans le style de l'outil de dégâts intégré.
 ## Category: Combat
 ## Author: cklausl
-## Version: 0.1.0
+## Version: 0.1.1
 ## SavedVariables: GryphonThreatDB
 ## SavedVariablesPerCharacter: GryphonThreatCharDB
 ## IconTexture: Interface\Icons\Spell_Nature_Reincarnation

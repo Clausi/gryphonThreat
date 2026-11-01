@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-01
+
 ### Fixed
 
 - The pull aggro bar and the addon list show the Taunt icon; it was missing before.
@@ -35,5 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `notify`, `debug`.
 - English, German and French texts.
 
-[Unreleased]: https://github.com/Clausi/gryphonThreat/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Clausi/gryphonThreat/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Clausi/gryphonThreat/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Clausi/gryphonThreat/releases/tag/v0.1.0
