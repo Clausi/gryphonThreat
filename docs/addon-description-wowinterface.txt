@@ -68,4 +68,4 @@ Found a bug or have an idea? Please open an issue on GitHub:
 
 Source code and changelog: [url="https://github.com/Clausi/gryphonThreat"]github.com/Clausi/gryphonThreat[/url]
 
-Also available on [url="https://addons.wago.io/addons/gryphonthreat"]Wago Addons[/url].
+Also available on [url="https://www.curseforge.com/wow/addons/gryphon-threat"]CurseForge[/url] and [url="https://addons.wago.io/addons/gryphonthreat"]Wago Addons[/url].
