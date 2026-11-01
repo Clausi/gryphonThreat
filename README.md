@@ -48,8 +48,9 @@ Known limitations:
 
 ## Installation
 
-Install it from [Wago Addons](https://addons.wago.io/addons/gryphonthreat), or copy (or symlink)
-the `GryphonThreat` folder into the client's AddOns folder:
+Install it from [CurseForge](https://www.curseforge.com/wow/addons/gryphon-threat) or
+[Wago Addons](https://addons.wago.io/addons/gryphonthreat), or copy (or symlink) the `GryphonThreat`
+folder into the client's AddOns folder:
 
 ```
 World of Warcraft\<client folder>\Interface\AddOns\GryphonThreat
@@ -82,8 +83,8 @@ The packager embeds these libraries from the externals in `.pkgmeta`:
    [BigWigs packager](https://github.com/BigWigsMods/packager) and uploads it to CurseForge (project
    ID from `X-Curse-Project-ID` in the TOC), Wago Addons (`X-Wago-ID`), WoWInterface
    (`X-WoWI-ID`) and as a GitHub release. Game versions come from `## Interface`. It needs the
-   repository secrets `CF_API_KEY`, `WAGO_API_TOKEN` and `WOWI_API_TOKEN`. So far only the Wago ID
-   is in the TOC; the packager skips sites without an ID.
+   repository secrets `CF_API_KEY`, `WAGO_API_TOKEN` and `WOWI_API_TOKEN`. So far only the CurseForge
+   and Wago IDs are in the TOC; the packager skips sites without an ID.
 
 ## Structure
 

@@ -12,6 +12,7 @@
 ## X-Category: Combat
 ## X-License: MIT
 ## X-Website: https://github.com/Clausi/gryphonThreat
+## X-Curse-Project-ID: 1776504
 ## X-Wago-ID: mNww2XNo
 
 # Libraries (fetched by the packager, see .pkgmeta)
