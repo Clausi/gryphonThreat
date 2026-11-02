@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Edit Mode setting "Update Interval" (0.1 to 1 s, default 0.1 s): how often the window redraws at
+  most during a fight. A new target and entering or leaving combat are shown right away.
+
 ## [0.1.1] - 2026-11-01
 
 ### Fixed

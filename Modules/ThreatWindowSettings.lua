@@ -5,12 +5,18 @@ local ThreatWindowSettings = ns:RegisterModule("ThreatWindowSettings")
 -- Adds the threat window to Blizzard's Edit Mode with LibEditMode, with the settings dialog of the
 -- damage meter (EditModeSettingDisplayInfo.lua, Enum.EditModeSystem.DamageMeter): style, numbers,
 -- size, bar height, padding, opacity, background, text size, visibility, icons and class colors.
+-- Added: the pull aggro bar and the update interval.
 -- The values are saved per Edit Mode layout in ns.db.layouts (ThreatWindow:GetLayout).
 
 local LibEditMode = LibStub("LibEditMode")
 
 local function FormatPercentage(value)
     return L["SLIDER_PERCENT"]:format(value)
+end
+
+-- Milliseconds as seconds ("0.1 s").
+local function FormatSeconds(value)
+    return L["SLIDER_SECONDS"]:format(value / 1000)
 end
 
 -- A setting stored in the layout under key. Changes are applied right away, the dialog only
@@ -42,8 +48,8 @@ end
 
 -- All sliders move in whole steps. Values are rounded both ways: the slider may report rounding
 -- errors, and sizes saved by the resize handle of older versions may have decimals.
-local function Slider(key, name, minValue, maxValue, valueStep, formatter)
-    local setting = LayoutSetting(LibEditMode.SettingType.Slider, key, name, nil, {
+local function Slider(key, name, minValue, maxValue, valueStep, formatter, desc)
+    local setting = LayoutSetting(LibEditMode.SettingType.Slider, key, name, desc, {
         minValue = minValue,
         maxValue = maxValue,
         valueStep = valueStep,
@@ -188,6 +194,9 @@ local function BuildSettings()
         Checkbox("showIcons", L["SETTING_SHOW_ICONS"]),
         Checkbox("classColors", L["SETTING_CLASS_COLORS"], L["SETTING_CLASS_COLORS_DESC"]),
         Checkbox("showPullAggro", L["SETTING_PULL_AGGRO"], L["SETTING_PULL_AGGRO_DESC"]),
+        -- Not a damage meter setting: the default of 0.1 s can only be raised, to redraw less often.
+        Slider("updateInterval", L["SETTING_UPDATE_INTERVAL"], 100, 1000, 100, FormatSeconds,
+            L["SETTING_UPDATE_INTERVAL_DESC"]),
     }
 end
 
