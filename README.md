@@ -56,9 +56,6 @@ folder into the client's AddOns folder:
 World of Warcraft\<client folder>\Interface\AddOns\GryphonThreat
 ```
 
-During development, run `.tools\fetch-libs.cmd` once, then `.tools\deploy-retail.cmd` (or
-`.tools\deploy-forever.cmd`) copies the addon there.
-
 ## Libraries
 
 The packager embeds these libraries from the externals in `.pkgmeta`:

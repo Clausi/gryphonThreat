@@ -72,9 +72,8 @@ file only adds what is specific to GryphonThreat.
 
 ## Testing
 
-`.tools/deploy-retail.cmd` copies the addon into the Retail AddOns folder, `.tools/deploy-forever.cmd`
-into the Forever AddOns folder (run `.tools/fetch-libs.cmd` once before). `/gryphonthreat test` and
-Edit Mode fill the window with sample bars, as Edit Mode does for the damage meter.
+`/gryphonthreat test` and Edit Mode fill the window with sample bars, as Edit Mode does for the
+damage meter.
 
 ## Commit scopes
 
