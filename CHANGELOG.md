@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Support for WoW Forever.
 - Edit Mode setting "Color Own Bar" with a color picker: shows your own bar in the chosen color
   instead of the class or aggro color. Off by default.
 - Edit Mode setting "Update Interval" (0.1 to 1 s, default 0.1 s): how often the window redraws at

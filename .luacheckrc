@@ -1,4 +1,4 @@
--- luacheck configuration for GryphonThreat (WoW Retail, later Forever, Lua 5.1)
+-- luacheck configuration for GryphonThreat (WoW Retail and Forever, Lua 5.1)
 std = "lua51"
 max_line_length = 120
 exclude_files = { ".tools/", "Libs/" }

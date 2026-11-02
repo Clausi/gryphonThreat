@@ -30,10 +30,10 @@ for WoWInterface (BBCode) in [docs/addon-description-wowinterface.txt](docs/addo
 
 ## Supported clients
 
-| Client  | Interface | Status                                   |
-| ------- | --------- | ---------------------------------------- |
-| Retail  | 120105    | Supported, in development                |
-| Forever | 16001     | Planned (not yet in `## Interface:`)     |
+| Client  | Interface | Status    |
+| ------- | --------- | --------- |
+| Retail  | 120105    | Supported |
+| Forever | 16001     | Supported |
 
 Both use the Mainline UI and API. Client differences are handled in `Core/Compat.lua`.
 

@@ -1,6 +1,6 @@
 [size="5"][b]GryphonThreat[/b][/size]
 
-[b]A threat meter for World of Warcraft Retail that looks like the built-in damage meter.[/b]
+[b]A threat meter for World of Warcraft Retail and WoW Forever that looks like the built-in damage meter.[/b]
 
 GryphonThreat shows who has aggro on your target and how close everyone else is to pulling it, in a window that fits right next to Blizzard's damage meter: same header, same bars, same Edit Mode settings.
 
@@ -57,7 +57,7 @@ Settings and position are saved [b]per Edit Mode layout[/b]. While you preview t
 
 [size="4"][b]Good to know[/b][/size]
 [list]
-[*]Supports [b]Retail[/b]. [b]WoW Forever[/b] is planned.
+[*]Supports [b]Retail[/b] and [b]WoW Forever[/b].
 [*]Only the threat on your [b]own target[/b] is shown, not on the target of a friendly target.
 [*]In restricted content, Blizzard makes threat values [b]secret[/b]. The window then shows the percentage only and keeps the group order.
 [*]The window can not be changed in Edit Mode [b]during combat[/b].
