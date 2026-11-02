@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Differences between the supported clients (Retail, later Forever), in one place. Detects the
+-- Differences between the supported clients (Retail, Forever), in one place. Detects the
 -- APIs a client has instead of comparing version numbers. Blizzard UI reference: the live and
 -- forever branches of Gethe/wow-ui-source.
 local Compat = {}

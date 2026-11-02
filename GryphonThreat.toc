@@ -1,4 +1,4 @@
-## Interface: 120105
+## Interface: 120105, 16001
 ## Title: GryphonThreat
 ## Notes: Shows the threat on your target in the style of the built-in damage meter.
 ## Notes-deDE: Zeigt die Bedrohung auf deinem Ziel im Stil der eingebauten Schadensanzeige.

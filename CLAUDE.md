@@ -11,12 +11,11 @@ file only adds what is specific to GryphonThreat.
 ## Target clients
 
 - **Supported: Retail** (120105, `_retail_`, `live` branch of wow-ui-source), the client the addon
-  is developed and tested on first. The only client in `## Interface:` for now.
-- **Planned: WoW Forever** (16001, `_forever_`, `forever` branch of wow-ui-source). The addon will be
-  published for Forever later; add 16001 to `## Interface:` once it is tested there. Keep it in mind
-  for every design decision (Mainline UI and API, "First Surname" names without realm, secret
-  values). Therefore every client difference already goes through `ns.Compat`, even if Retail and
-  Forever use the same code there yet.
+  is developed and tested on first.
+- **Supported: WoW Forever** (16001, `_forever_`, `forever` branch of wow-ui-source). Test every
+  change there too. Keep it in mind for every design decision (Mainline UI and API, "First Surname"
+  names without realm, secret values). Every client difference goes through `ns.Compat`, even
+  where Retail and Forever use the same code yet.
 - `Core/Names.lua` does not exist yet. When a feature builds or compares names, take over
   `Core/Names.lua` from GryphonMail. Until then names are only shown, with the first return of
   `UnitName` (the first name on Forever).
@@ -30,7 +29,9 @@ file only adds what is specific to GryphonThreat.
   does not taint it.
 - Atlases, fonts and colors that may differ between clients are in `Compat.GetMeterStyle()`. When
   Blizzard changes the damage meter, compare the `live` and `forever` branches and update it there.
-  The `forever` branch only adds `Camelot/DamageMeterEntryOverrides.lua` (no classification icons).
+  The `forever` branch adds `Camelot/DamageMeterEntryOverrides.lua` (no classification icons), and
+  `DamageMeterEntry.lua` / `DamageMeterSessionWindow.lua` differ only in classification icons,
+  secret value checks and the scroll box; the Edit Mode settings and defaults are the same.
 - The Edit Mode settings mirror the damage meter's (`Blizzard_EditMode/Shared/EditModeSettingDisplayInfo.lua`,
   `Enum.EditModeSystem.DamageMeter`; defaults from `Mainline/EditModePresetLayouts.lua`). The values
   of style, numbers and visibility are the ones of Blizzard's `Enum.DamageMeterStyle`,
