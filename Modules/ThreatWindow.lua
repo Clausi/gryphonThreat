@@ -35,6 +35,9 @@ ThreatWindow.LAYOUT_DEFAULTS = {
     visibility = ThreatWindow.Visibility.Always,
     showIcons = true,
     classColors = true,
+    -- Own bar in playerColor ("rrggbb") instead of the class or aggro color.
+    colorPlayer = false,
+    playerColor = "ffd100",
     -- Extra first bar with the threat the player still needs to pull aggro.
     showPullAggro = true,
     -- Delay in milliseconds that coalesces the many threat events in combat into one redraw.
@@ -109,8 +112,12 @@ end
 
 -- Bar color (r, g, b): the class color, or with "Show Class Color" off the aggro color of the
 -- unit's percentage, as the damage meter shows no class without its class color. Secret
--- percentages can not be compared, so those bars keep the default color.
+-- percentages can not be compared, so those bars keep the default color. With "Color Own Bar",
+-- the player's bar has the chosen color in both cases.
 local function GetBarColor(entry, layout)
+    if entry.isPlayer and layout.colorPlayer then
+        return CreateColorFromRGBHexString(layout.playerColor):GetRGB()
+    end
     if not layout.classColors then
         if entry.isSecret then
             return style.defaultColor:GetRGB()

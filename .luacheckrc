@@ -32,6 +32,7 @@ read_globals = {
     "C_Timer",
     "unpack",
     "CreateColor",
+    "CreateColorFromRGBHexString",
     "CreateFrame",
     "GetAddOnMemoryUsage",
     "UpdateAddOnMemoryUsage",
