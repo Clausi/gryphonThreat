@@ -5,7 +5,7 @@ local ThreatWindowSettings = ns:RegisterModule("ThreatWindowSettings")
 -- Adds the threat window to Blizzard's Edit Mode with LibEditMode, with the settings dialog of the
 -- damage meter (EditModeSettingDisplayInfo.lua, Enum.EditModeSystem.DamageMeter): style, numbers,
 -- size, bar height, padding, opacity, background, text size, visibility, icons and class colors.
--- Added: the pull aggro bar and the update interval.
+-- Added: the color of the own bar, the pull aggro bar and the update interval.
 -- The values are saved per Edit Mode layout in ns.db.layouts (ThreatWindow:GetLayout).
 
 local LibEditMode = LibStub("LibEditMode")
@@ -156,6 +156,20 @@ local function Checkbox(key, name, desc)
     return LayoutSetting(LibEditMode.SettingType.Checkbox, key, name, desc)
 end
 
+-- The layout stores the color as "rrggbb", LibEditMode's color picker works with ColorMixin.
+local function ColorPicker(key, name, disabled)
+    local setting = LayoutSetting(LibEditMode.SettingType.ColorPicker, key, name, nil, { disabled = disabled })
+    local get, set = setting.get, setting.set
+    setting.default = CreateColorFromRGBHexString(setting.default)
+    setting.get = function(layoutName)
+        return CreateColorFromRGBHexString(get(layoutName))
+    end
+    setting.set = function(layoutName, color)
+        set(layoutName, color:GenerateHexColorNoAlpha())
+    end
+    return setting
+end
+
 local function PreviewSlider(...)
     local setting = Slider(...)
     setting.hideSelectionOnInteract = true
@@ -193,6 +207,10 @@ local function BuildSettings()
         }),
         Checkbox("showIcons", L["SETTING_SHOW_ICONS"]),
         Checkbox("classColors", L["SETTING_CLASS_COLORS"], L["SETTING_CLASS_COLORS_DESC"]),
+        Checkbox("colorPlayer", L["SETTING_COLOR_PLAYER"], L["SETTING_COLOR_PLAYER_DESC"]),
+        ColorPicker("playerColor", L["SETTING_PLAYER_COLOR"], function(layoutName)
+            return not ThreatWindow:GetLayout(layoutName).colorPlayer
+        end),
         Checkbox("showPullAggro", L["SETTING_PULL_AGGRO"], L["SETTING_PULL_AGGRO_DESC"]),
         -- Not a damage meter setting: the default of 0.1 s can only be raised, to redraw less often.
         Slider("updateInterval", L["SETTING_UPDATE_INTERVAL"], 100, 1000, 100, FormatSeconds,

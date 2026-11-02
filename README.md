@@ -16,9 +16,10 @@ built-in damage meter.
 - **Edit Mode:** the window is part of Blizzard's Edit Mode (Esc > Edit Mode), with the same
   settings as the damage meter: style (default, bordered, thin), numbers (minimal, compact,
   complete), frame width and height, bar height, padding, opacity, background, text size, visibility
-  (always, in combat, in group, hidden), class icons, class colors and the pull aggro bar, plus the
-  update interval (how often the window redraws at most, 0.1 to 1 s). Saved per Edit Mode layout. As in the damage meter, the selection overlay hides while you preview the
-  style, opacity or background.
+  (always, in combat, in group, hidden), class icons, class colors and the pull aggro bar, plus a
+  color for your own bar and the update interval (how often the window redraws at most, 0.1 to
+  1 s). Saved per Edit Mode layout. As in the damage meter, the selection overlay hides while you
+  preview the style, opacity or background.
 - **Window:** move by dragging, resize with the handle in the bottom right corner (both saved in the
   Edit Mode layout), minimize with the button in the header, lock and hide in the settings menu
   (gear button). Shown, locked and minimized are stored per character.
