@@ -37,13 +37,13 @@ ThreatWindow.LAYOUT_DEFAULTS = {
     classColors = true,
     -- Extra first bar with the threat the player still needs to pull aggro.
     showPullAggro = true,
+    -- Delay in milliseconds that coalesces the many threat events in combat into one redraw.
+    updateInterval = 100,
 }
 
 -- Also the position LibEditMode's "Reset Position" moves the window to.
 ThreatWindow.DEFAULT_POSITION = { point = "CENTER", x = 400, y = -150 }
 
--- Coalesces the many threat events in combat into one redraw.
-local REFRESH_DELAY = 0.1
 -- Space between the header and the first bar, and below the last bar (DamageMeterSessionWindowMixin).
 local LIST_TOP_OFFSET, LIST_BOTTOM_OFFSET = 2, 6
 -- Aggro colors: from green over yellow to red as a unit gets closer to pulling aggro, red from
@@ -361,7 +361,7 @@ local function RequestRefresh()
         return
     end
     refreshPending = true
-    C_Timer.After(REFRESH_DELAY, function()
+    C_Timer.After(ThreatWindow:GetLayout().updateInterval / 1000, function()
         refreshPending = false
         ThreatWindow:Refresh()
     end)
@@ -734,7 +734,11 @@ function ThreatWindow:OnEnable()
     self:ApplyLayout()
 
     local ThreatData = ns.modules.ThreatData
-    ns:RegisterEvent("PLAYER_TARGET_CHANGED", RequestRefresh)
+    -- A new target and entering or leaving combat are drawn right away, without the update interval.
+    local function RefreshNow()
+        ThreatWindow:Refresh()
+    end
+    ns:RegisterEvent("PLAYER_TARGET_CHANGED", RefreshNow)
     -- The target of the target only matters where it can be shown (Compat.CanUseTargetOfTarget).
     if Compat.CanUseTargetOfTarget() then
         ns:RegisterEvent("UNIT_TARGET", function(_, unit)
@@ -752,13 +756,16 @@ function ThreatWindow:OnEnable()
     end)
     ns:RegisterEvent("UNIT_PET", RequestRefresh)
     -- Also for the "Visibility" setting (in combat, in group).
-    local function OnStateChanged()
+    ns:RegisterEvent("GROUP_ROSTER_UPDATE", function()
         UpdateVisibility()
         RequestRefresh()
+    end)
+    local function OnCombatChanged()
+        UpdateVisibility()
+        RefreshNow()
     end
-    ns:RegisterEvent("GROUP_ROSTER_UPDATE", OnStateChanged)
-    ns:RegisterEvent("PLAYER_REGEN_ENABLED", OnStateChanged)
-    ns:RegisterEvent("PLAYER_REGEN_DISABLED", OnStateChanged)
+    ns:RegisterEvent("PLAYER_REGEN_ENABLED", OnCombatChanged)
+    ns:RegisterEvent("PLAYER_REGEN_DISABLED", OnCombatChanged)
 end
 
 ns:RegisterCommand("show", function()

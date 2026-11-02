@@ -33,6 +33,7 @@ The window is part of Blizzard's [b]Edit Mode[/b] (Esc > Edit Mode) and has the 
 [*][b]Opacity[/b], [b]background[/b] and [b]text size[/b]
 [*][b]Visibility:[/b] always, in combat, in group or hidden
 [*][b]Class icons[/b], [b]class colors[/b] and the [b]pull aggro bar[/b] on or off
+[*][b]Update interval:[/b] redraw less often during a fight (0.1 to 1 s)
 [/list]
 Settings and position are saved [b]per Edit Mode layout[/b]. While you preview the style, opacity or background, the selection overlay hides, just like for the damage meter.
 
