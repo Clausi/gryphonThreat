@@ -47,8 +47,8 @@ file only adds what is specific to GryphonThreat.
   `UNIT_THREAT_LIST_UPDATE`, so only the own target is used there (`Compat.CanUseTargetOfTarget`).
 - `UNIT_THREAT_LIST_UPDATE` fires for every mob; the window only redraws for the shown one.
 - The unit with aggro is shown with 100 % (`Compat.GetThreat`), the API sometimes returns less.
-- `rawThreat` is the threat itself and is shown unchanged (verified on Retail: about the damage
-  done times the threat modifier, not times 100). Verify again on Forever before adding it.
+- `rawThreat` is the threat itself and is shown unchanged (verified on Retail and Forever: about the
+  damage done times the threat modifier, not times 100).
 
 ## Libraries
 
