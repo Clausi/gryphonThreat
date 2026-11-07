@@ -28,6 +28,7 @@ read_globals = {
 
     -- API
     "C_AddOns",
+    "C_CVar",
     "C_Secrets",
     "C_Timer",
     "unpack",

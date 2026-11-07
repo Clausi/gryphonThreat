@@ -510,6 +510,15 @@ local function GenerateSettingsMenu(_, rootDescription)
     end, function()
         ThreatWindow:SetTestMode(not testMode)
     end)
+    -- Missing on clients without the CVar. Not an Edit Mode setting: it does not depend on the layout.
+    local TargetFrameThreat = ns.modules.TargetFrameThreat
+    if TargetFrameThreat then
+        rootDescription:CreateCheckbox(L["MENU_TARGET_FRAME"], function()
+            return TargetFrameThreat:IsEnabled()
+        end, function()
+            TargetFrameThreat:SetEnabled(not TargetFrameThreat:IsEnabled())
+        end)
+    end
     rootDescription:CreateButton(L["MENU_HIDE"], function()
         ThreatWindow:SetShown(false)
         ns:Print(L["WINDOW_HIDDEN"])

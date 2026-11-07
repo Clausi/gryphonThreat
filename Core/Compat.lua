@@ -46,6 +46,22 @@ function Compat.CanUseTargetOfTarget()
     return C_Secrets == nil
 end
 
+-- The CVar of the threat percentage at Blizzard's target frame. Blizzard's UI reads it on Retail and
+-- Forever without offering a setting for it; the client registers it, so it is checked in-game.
+local NUMERIC_THREAT_CVAR = "threatShowNumeric"
+
+function Compat.HasNumericThreat()
+    return C_CVar.GetCVar(NUMERIC_THREAT_CVAR) ~= nil
+end
+
+function Compat.IsNumericThreatEnabled()
+    return C_CVar.GetCVarBool(NUMERIC_THREAT_CVAR) == true
+end
+
+function Compat.SetNumericThreatEnabled(enabled)
+    C_CVar.SetCVar(NUMERIC_THREAT_CVAR, enabled and "1" or "0")
+end
+
 -- Name of a unit to show, the first name on Forever, UNKNOWN without a name. May be a secret value
 -- on restricted units, which is returned unchanged (no boolean test on it).
 function Compat.GetUnitDisplayName(unit)
