@@ -36,6 +36,7 @@ Settings and position are saved **per Edit Mode layout**. While you preview the 
 ### Window
 - Move it, resize it with the handle in the bottom right corner, minimize it in the header
 - Lock or hide it in the menu of the gear button
+- Optional: your threat in percent at Blizzard's **target frame**, in the same menu
 - **Test mode** with sample bars to place the window without a fight; Edit Mode shows them too
 
 ## Slash commands
@@ -47,6 +48,7 @@ Settings and position are saved **per Edit Mode layout**. While you preview the 
 | `/gryphonthreat lock` | Lock or unlock the window |
 | `/gryphonthreat reset` | Reset position and size (current Edit Mode layout) |
 | `/gryphonthreat test` | Show sample bars |
+| `/gryphonthreat targetframe on\|off` | Threat in percent at Blizzard's target frame |
 | `/gryphonthreat notify on\|off` | Turn the login message of this character on or off |
 
 ## Good to know

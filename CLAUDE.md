@@ -50,6 +50,13 @@ file only adds what is specific to GryphonThreat.
 - `rawThreat` is the threat itself and is shown unchanged (verified on Retail and Forever: about the
   damage done times the threat modifier, not times 100).
 
+## Threat at the target frame
+
+`Modules/TargetFrameThreat.lua` only switches the CVar `threatShowNumeric`, which has no Blizzard
+setting on Retail and Forever; the display is Blizzard's own (`UnitFrame_UpdateThreatIndicator`). The
+game stores the value, so there is no saved variable, and the option is in the settings menu of the
+window instead of Edit Mode, because it does not depend on the layout.
+
 ## Libraries
 
 - `.tools/fetch-libs.cmd` fetches the same library versions as the `externals` in `.pkgmeta`
@@ -78,4 +85,4 @@ damage meter.
 
 ## Commit scopes
 
-`threat-data`, `threat-window`, `threat-window-settings`, `core`, `locales`, `toc`.
+`threat-data`, `threat-window`, `threat-window-settings`, `target-frame-threat`, `core`, `locales`, `toc`.
