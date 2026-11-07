@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Your threat in percent at Blizzard's target frame, as an option in the settings menu of the window
+  (gear button) and with `/gryphonthreat targetframe on|off`. Off by default. It switches the game's
+  own display (CVar `threatShowNumeric`), so it is stored by the game, not per character.
+
 ## [1.0.0] - 2026-11-05
 
 ### Added

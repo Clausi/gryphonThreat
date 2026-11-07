@@ -23,6 +23,9 @@ built-in damage meter.
 - **Window:** move by dragging, resize with the handle in the bottom right corner (both saved in the
   Edit Mode layout), minimize with the button in the header, lock and hide in the settings menu
   (gear button). Shown, locked and minimized are stored per character.
+- **Threat at the target frame (optional):** switches on the game's own display of your threat in
+  percent at Blizzard's target frame, in the settings menu (gear button) or with
+  `/gryphonthreat targetframe on|off`. The game stores it (CVar `threatShowNumeric`).
 - **Test mode:** sample bars to place and size the window without a fight; Edit Mode shows them too.
 
 The full description for CurseForge and Wago is in [docs/addon-description.md](docs/addon-description.md),
@@ -110,7 +113,8 @@ GryphonThreat/
 └── Modules/
     ├── ThreatData.lua     # Threat of the group (with pets) on the target, sorted
     ├── ThreatWindow.lua   # Window in the look of the damage meter, layout settings, window commands
-    └── ThreatWindowSettings.lua # Edit Mode integration and settings dialog (LibEditMode)
+    ├── ThreatWindowSettings.lua # Edit Mode integration and settings dialog (LibEditMode)
+    └── TargetFrameThreat.lua # Threat percentage at Blizzard's target frame (CVar)
 ```
 
 ## Adding a module
@@ -152,6 +156,7 @@ Lint with [luacheck](https://github.com/lunarmodules/luacheck). Place `luacheck.
 - `/gryphonthreat lock` – lock or unlock the threat window
 - `/gryphonthreat reset` – reset position and size of the threat window (current Edit Mode layout)
 - `/gryphonthreat test` – show sample bars to place the window
+- `/gryphonthreat targetframe on|off` – threat in percent at Blizzard's target frame
 - `/gryphonthreat version` – show version
 - `/gryphonthreat notify on|off` – automatic messages (login), default on
 - `/gryphonthreat debug` – toggle debug output (after a `/reload`, also the memory each module keeps;

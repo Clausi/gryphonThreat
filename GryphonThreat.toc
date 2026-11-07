@@ -33,6 +33,7 @@ Core\Util.lua
 Modules\ThreatData.lua
 Modules\ThreatWindow.lua
 Modules\ThreatWindowSettings.lua
+Modules\TargetFrameThreat.lua
 
 # Bootstrap (must be loaded last)
 Core\Main.lua
