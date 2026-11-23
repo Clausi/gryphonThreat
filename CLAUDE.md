@@ -16,9 +16,9 @@ file only adds what is specific to GryphonThreat.
   change there too. Keep it in mind for every design decision (Mainline UI and API, "First Surname"
   names without realm, secret values). Every client difference goes through `ns.Compat`, even
   where Retail and Forever use the same code yet.
-- `Core/Names.lua` does not exist yet. When a feature builds or compares names, take over
-  `Core/Names.lua` from GryphonMail. Until then names are only shown, with the first return of
-  `UnitName` (the first name on Forever).
+- `Core/Names.lua` is taken over from GryphonMail. The bars show the full name like the damage
+  meter ("First Surname" on Forever, the name without realm on Retail, `Compat.GetUnitDisplayName`);
+  a name that does not fit is cut off with "..." by the font string.
 
 ## Damage meter look
 
