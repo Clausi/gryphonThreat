@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (gear button) and with `/gryphonthreat targetframe on|off`. Off by default. It switches the game's
   own display (CVar `threatShowNumeric`), so it is stored by the game, not per character.
 
+### Changed
+
+- On WoW Forever the bars show first name and surname, like the damage meter, instead of only the
+  first name. A name that does not fit the window is shortened.
+
 ## [1.0.0] - 2026-11-05
 
 ### Added

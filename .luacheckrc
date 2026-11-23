@@ -28,6 +28,7 @@ read_globals = {
 
     -- API
     "C_AddOns",
+    "Constants",
     "C_CVar",
     "C_Secrets",
     "C_Timer",
@@ -39,6 +40,7 @@ read_globals = {
     "UpdateAddOnMemoryUsage",
     "GetClassAtlas",
     "GetLocale",
+    "GetNormalizedRealmName",
     "IsInRaid",
     "RegionalUniqueNamesEnabled",
     "UnitCanAttack",

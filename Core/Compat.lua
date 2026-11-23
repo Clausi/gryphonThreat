@@ -62,14 +62,22 @@ function Compat.SetNumericThreatEnabled(enabled)
     C_CVar.SetCVar(NUMERIC_THREAT_CVAR, enabled and "1" or "0")
 end
 
--- Name of a unit to show, the first name on Forever, UNKNOWN without a name. May be a secret value
--- on restricted units, which is returned unchanged (no boolean test on it).
+-- Name of a unit to show, as the damage meter shows it: "First Surname" on Forever (UnitName returns
+-- the surname second), the name without realm on Retail (the second return is the realm). UNKNOWN
+-- without a name. May be a secret value on restricted units, which is returned unchanged (no boolean
+-- test or concatenation on it).
 function Compat.GetUnitDisplayName(unit)
-    local name = UnitName(unit)
+    local name, surname = UnitName(unit)
     if IsSecret(name) then
         return name
     end
-    return name or UNKNOWN
+    if name == nil then
+        return UNKNOWN
+    end
+    if Compat.HasRealmNames() then
+        return name
+    end
+    return ns.Names.Join(name, surname)
 end
 
 -- Class file name ("MAGE") of a unit, or nil if unknown or secret (restricted unit identity).
