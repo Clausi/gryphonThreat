@@ -108,6 +108,7 @@ GryphonThreat/
 ├── Core/
 │   ├── Init.lua           # Namespace, saved variable defaults, module registry, event dispatcher
 │   ├── Compat.lua         # Client differences (Retail, Forever): threat API, secret values, damage meter look
+│   ├── Names.lua          # Character names per client (Forever "First Surname", Retail "Name-Realm")
 │   ├── Util.lua           # Print/Debug helpers, debug memory output, defaults
 │   └── Main.lua           # Bootstrap: saved variables, module lifecycle, slash commands
 └── Modules/
