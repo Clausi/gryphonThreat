@@ -85,6 +85,25 @@ locales, libraries and module-specific rules, and wins where it differs.
   health in combat or chat messages during encounters. Guard string or number operations on them
   with `issecretvalue` and pass secret values through unchanged.
 
+## Options pages
+
+- Options pages are a canvas category built with `Core/OptionsPanel.lua` (own headers, checkboxes,
+  sliders, buttons, `AddChoice` radio buttons and `AddDropdown`). Never use Blizzard's vertical
+  settings list (`Settings.RegisterVerticalLayoutCategory`, `RegisterProxySetting`,
+  `CreateCheckbox`, `CreateSlider`, `CreateDropdown`, the list initializers) or Blizzard's menu
+  system (`WowStyle1DropdownTemplate`, `MenuUtil`, `UIDropDownMenu_*`) on them.
+- Why: the settings list reuses its control frames for every page. A control that showed an addon
+  setting keeps tainted callback handles, the Blizzard setting shown in it next runs tainted, and
+  e.g. an action bar toggle then taints Edit Mode (TargetUnit blocked, secret-value errors in unit
+  frames). Blizzard's menus share their frames in the same way.
+- Refresh the values in the canvas's `OnRefresh` (called through `securecallfunction`), not in an
+  `OnShow` script. Do not add own frames to `UISpecialFrames`: Blizzard's panel manager reads those
+  globals and carries the taint into the game menu.
+- `Core/OptionsPanel.lua` is the same file in every addon. The master is
+  `~/.claude/shared/Core/OptionsPanel.lua`, synced with `~/.claude/shared/sync-shared.sh`
+  (`check`, `push`, `pull`; a new addon needs its line in `sync-shared.conf`). Change the master and
+  push it; never change only one copy.
+
 ## Clients and compatibility
 
 Interface numbers: Forever 16001, Retail 120105, Classic Era 11509, Anniversary 20506,
